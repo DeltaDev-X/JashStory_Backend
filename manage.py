@@ -6,8 +6,11 @@ import sys
 
 def main():
     """Run administrative tasks."""
+    sys.path.append(os.path.join(os.path.dirname(__file__), 'apps'))
+
     settings_module = 'api.deployment_settings' if 'RENDER_EXTERNAL_HOSTNAME' in os.environ else 'api.settings'
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
+    
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
